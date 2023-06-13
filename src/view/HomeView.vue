@@ -51,103 +51,83 @@
             </div>
         </div>
 
-        <div class="mt-8"></div>
-        <div class="flex flex-col mt-8">
-            <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                <div
-                        class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200"
+        <h3 class="text-gray-700 text-2xl font-medium mt-8 mb-4">So'ngi buyurtmalar</h3>
+
+        <h3 class="text-gray-700 text-2xl font-medium mt-8 mb-4">Faol Foydalanuvchilar</h3>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <BlockPreloader v-if="!userStore?.loading" width="100%" margin="10px 0" height="40px" :loading="!userStore?.loading" v-for="i in 10" :key="i"></BlockPreloader>
+
+            <table class="w-full text-sm text-left text-gray-500" v-else>
+                <thead
+                    class="text-xs text-gray-700 uppercase bg-gray-50"
                 >
-                    <table class="min-w-full">
-                        <thead>
-                        <tr>
-                            <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                            >
-                                Ismi
-                            </th>
-                            <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                            >
-                                Obuna vaqti
-                            </th>
-                            <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                            >
-                                Status
-                            </th>
-                            <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                            >
-                                Role
-                            </th>
-                            <th
-                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-center"
-                            >
-                                Delete
-                            </th>
-                        </tr>
-                        </thead>
-
-                        <tbody class="bg-white">
-                        <tr v-for="item in 6" :key="item">
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img
-                                                class="h-10 w-10 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                        />
-                                    </div>
-
-                                    <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">
-                                            Valisher Botirov
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">
-                                            valisherbotirov1218@gmail.com
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">01.05.2023</div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <span
-                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                >{{ true ? "Active" : "No active" }}</span
+                <tr>
+                    <th scope="col" class="p-4">#</th>
+                    <th scope="col" class="px-6 py-3">F.I.SH</th>
+                    <th scope="col" class="px-6 py-3">Telefon raqami</th>
+                    <th scope="col" class="px-6 py-3">Tug'ilgan kuni</th>
+                    <th scope="col" class="px-6 py-3">Yashash manzili</th>
+                    <th scope="col" class="px-6 py-3 text-end">
+                        Amallar
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50"
+                    v-for="(item, index) in userList"
+                    :key="index"
                 >
-                            </td>
+                    <td class="w-4 p-4">
+                        <router-link :to="`users/${item?.id}`" class="font-bold cursor-pointer hover:text-[blue]">{{ index + 1 }}.</router-link>
+                    </td>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap cursor-pointer hover:text-[blue]"
+                    >
+                        <router-link :to="`users/${item?.id}`">
+                            {{ item?.first_name }} {{item?.last_name}}
+                        </router-link>
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                        {{ PhoneNumberFormatter(item.phone)}}
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
 
-                            <td
-                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                            >
-                                User
-                            </td>
-
-                            <td
-                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
-                            >
-                                <button
-                                        class="bg-[#DC3545] text-white px-4 py-2 rounded-[8px] transition-all duration-300 hover:bg-[red]"
-                                        @click="deleteUser(1)"
-                                >
-                                    O'chirish
-                                </button>
-                                <DeleteModal
-                                        :is-open="openModal"
-                                        @delete="fetchDelete"
-                                        @closeModal="openModal = $event"
-                                />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        {{ item?.birth_date }}
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                        {{ item?.address }}
+                    </th>
+                    <td class="flex items-center px-6 py-4 space-x-4 justify-end">
+                        <div
+                            @click="itemEdit(item)"
+                            class="font-medium text-blue-600  hover:underline cursor-pointer"
+                        >
+                            <i
+                                class="fa-solid fa-pen-to-square text-[blue] text-[20px]"
+                            ></i>
+                        </div>
+                        <div
+                            class="font-medium text-red-600 hover:underline cursor-pointer"
+                            @click="productDelete(item?.id)"
+                        >
+                            <i class="fa-solid fa-trash text-[red] text-[20px]"></i>
+                        </div>
+                        <DeleteModal title="Haqiqatdan ham ushbu foydalanuvchini o'chirmoqchimisiz?"
+                                     :is-open="openDeleteModal"
+                                     @delete="fetchDeleteModal"
+                                     @closeModal="openDeleteModal = $event"
+                        />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -159,61 +139,26 @@ import DeleteModal from "@/components/modal/DeleteModal.vue";
 import axios from "axios";
 import { useToast } from "vue-toastification";
 import formatDate from "@/helpers/formatDate";
+import {PhoneNumberFormatter} from "@/helpers/formatNumber.js";
+import BlockPreloader from "@/components/buttons/BlockPreloader.vue";
+import {computed} from "vue";
+import {useUsersStore} from "@/store/users.js";
 
 
 
 const toast = useToast();
 
-const openModal = ref(false);
-const deleteId = ref(null);
 
-const users = ref(null);
 
-// const fetchUser = () => {
-//   axios({
-//     methods: "get",
-//     url: "users",
-//     headers: {
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcyMjkyODk5LCJleHAiOjE2NzIzNzkyOTl9.IZZRWhoRz_57p0aVOZQgA3YqBISHOSVSLHmqMDsr - WU",
-//     },
-//     withCredentials: true,
-//   }).then((res) => (users.value = res.data.data.data));
-// };
+const userStore = useUsersStore()
 
-// function fetchDelete() {
-//   const params = { headers: {}, withCredentials: true };
-//   axios
-//     .delete(`users/${deleteId.value}`, { params })
-//     .then((res) => {
-//       fetchUser();
-//       toast.success("Muvaffaqiyatli o'chirildi");
-//     })
-//     .catch((err) => {
-//       toast.error("Xatolik yuz berdi");
-//     });
-// }
+const userList = computed(()=> userStore?.users)
 
-const deleteUser = (id) => {
-    openModal.value = true;
-    deleteId.value = id;
-};
 
-// fetch department count
-const productsList = ref([]);
-// const fetchProductsList = () => {
-//   axios({
-//     method: "GET",
-//     url: "/department",
-//     withCredentials: true,
-//   }).then((res) => {
-//     productsList.value = res.data.data.department;
-//   });
-// };
+
 
 onMounted(() => {
-    // fetchUser();
-    // fetchProductsList();
+    userStore.fetchUsersList(10,1)
 });
 </script>
 
