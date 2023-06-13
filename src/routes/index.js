@@ -4,7 +4,6 @@ import Login from "../view/LoginView.vue";
 
 import Users from "../view/users/UsersView.vue";
 import UserSingle from "../view/users/UserSingle.vue"
-import Settings from "../view/Settings.vue";
 import Pointer from "../view/pointer/Pointers.vue";
 import PointerSingle from "../view/pointer/PointerSingle.vue";
 
@@ -33,12 +32,6 @@ const routes = [
     path: "/users/:id",
     name: "UserSingle",
     component: UserSingle,
-    meta: { roles: ['admin', 'super'] }
-  },
-  {
-    path: "/settings",
-    name: "Settings",
-    component: Settings,
     meta: { roles: ['admin', 'super'] }
   },
 

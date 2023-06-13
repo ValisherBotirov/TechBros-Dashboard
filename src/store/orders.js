@@ -10,10 +10,7 @@ export const useDepartmentStore = defineStore('departmentStore', {
     actions: {
         fetchDepartmentList(limit,page) {
             return new Promise((resolve, reject) => {
-                // if (this.departments.length) {
-                //     resolve(this.departments)
-                //     return
-                // }
+
                 axios
                     .get('/departments',{
 

@@ -15,7 +15,7 @@
                                 <!-- {{ users?.length }} -->
                                 100
                             </h4>
-                            <div class="text-gray-500">Obunachilar</div>
+                            <div class="text-gray-500">Foydalanuvchilar</div>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
 
                         <div class="mx-5">
                             <h4 class="text-2xl font-semibold text-gray-700">200,521</h4>
-                            <div class="text-gray-500">Jami hisobotlar</div>
+                            <div class="text-gray-500">Jami buyurtmalar</div>
                         </div>
                     </div>
                 </div>
