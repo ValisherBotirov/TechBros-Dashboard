@@ -7,7 +7,7 @@ export const useAuthStore = defineStore("auth", {
 
         user:
             {
-                login:"Admin",
+                login:"admin",
                 parol:"Parol123",
                 userRole : '',
                 isRegister:0

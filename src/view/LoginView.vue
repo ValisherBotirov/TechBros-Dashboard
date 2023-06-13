@@ -4,17 +4,14 @@
               <p class="text-center font-medium text-2xl">Log in</p>
               <form  class="mt-1">
 
-<!--                      <div class="mb-4">-->
-<!--                          <label for="login" class="mb-2 text-base font-medium transition duration-300"  :class="v$.login.$error ? 'text-[red]' : ''">Login</label>-->
-<!--                         <FormInput placeholder="Username" v-model="state.login" :error="v$.login.$error" inputClass="h-[18px]"  />-->
-<!--                      </div>-->
-                  <div class="">
-                      <label for="email" class="mb-2 font-medium transition duration-300 text-base" :class="v$.email.$error ? 'text-[red]' : ''">Email</label>
-                      <FormInput placeholder="Email" v-model="state.email" :error="v$.email.$error" type="email" inputClass="h-[20px]" />
-                  </div>
+                      <div class="mb-4">
+                          <label for="login" class="mb-2 text-base font-medium transition duration-300"  :class="v$.login.$error ? 'text-[red]' : ''">Login</label>
+                         <FormInput placeholder="Username" v-model="state.login" :error="v$.login.$error" inputClass="h-[18px]"  />
+                      </div>
+
                       <div class="mt-4">
                           <label for="password" class="mb-2 font-medium transition duration-300 text-base" :class="v$.password.$error ? 'text-[red]' : ''">Parol</label>
-                          <FormInput placeholder="Parol" v-model="state.password" :error="v$.password.$error" type="password" inputClass="h-[20px]" />
+                          <FormInput placeholder="Parol" v-model="state.password" :error="v$.password.$error" type="password" inputClass="h-[20px]"  custom-class=" "/>
                       </div>
 
 
@@ -48,14 +45,14 @@ const authStore = useAuthStore()
 
 const state = reactive({
     password: "",
-    email:""
+    login:""
 });
 const rules = computed(() => {
     return {
         password: {
             required,
         },
-        email:{required,email}
+        login:{required}
     };
 });
 const v$ = useVuelidate(rules, state);
@@ -76,24 +73,27 @@ const formLoginData = () => {
 const fetchApi = (data) => {
     const params = {
         password: data.password,
-        email : data.email,
+        email : data.login,
     }
 
   loading.value = true
-    axios.post("/auth/login",params).then((res)=>{
-        const token = res.data.data.access
-        localStorage.setItem("token",token)
-        authStore.user.userRole = "admin"
-        authStore.user.isRegister = 1;
-        sessionStorage.setItem("isRegister",(authStore.user.isRegister));
-        toast.success("Tizimga muvaffaqiyatli kirdingiz!")
-        router.push("/")
+
+    axios.get("/auth").then((res)=>{
+        console.log(res)
+        if(res.data.login === 'admin' && res.data.parol === 'Parol123'){
+                authStore.user.userRole = "admin"
+                authStore.user.isRegister = 1;
+                sessionStorage.setItem("isRegister",(authStore.user.isRegister));
+                toast.success("Tizimga muvaffaqiyatli kirdingiz!")
+                router.push("/")
+        }
     }).catch((err)=>{
         console.log(err)
         toast.error("Parol yoki email xato")
     }).finally(()=>{
-        loading.value = false;
+        loading.value = false
     })
+
 };
 
 
