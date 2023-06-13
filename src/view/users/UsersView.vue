@@ -47,7 +47,6 @@
 
       <div class="flex items-center gap-4 mt-6 mb-5">
           <Search class="w-full"/>
-          <SingleSelect v-model="selectValue"  placeholder="Filter by" :data="selectData" class="w-[25%]" />
       </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -126,8 +125,7 @@
       </table>
     </div>
 
-      <VuePagination v-if="userStore?.pagination?.total_count>limit" :total="userStore?.pagination?.total_count" :limit="limit" :current-page="currentPage" @fetchPage="fetchPagination" class="flex justify-end mt-5" />
-<!--      <pre>{{userStore.pagination}}</pre>-->
+      <VuePagination v-if="userStore.pagination  > limit" :total="userStore.pagination" :limit="limit" :current-page="currentPage" @fetchPage="fetchPagination" class="flex justify-end mt-5" />
 
   </div>
 </template>
@@ -145,7 +143,6 @@ import { required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import {useUsersStore} from "@/store/users.js";
 import axios from "@/plugins/axios.js";
-import SingleSelect from "@/components/select/SingleSelect.vue";
 import BlockPreloader from "@/components/buttons/BlockPreloader.vue";
 
 const userStore = useUsersStore()
@@ -182,10 +179,6 @@ function productDelete(id) {
 }
 
 
-
-
-// new code
-
 // pagination
 const limit = ref(5);
 // const offset = ref(1)
@@ -195,26 +188,6 @@ function fetchPagination(page){
     // offset.value =  (currentPage.value - 1) * limit.value;
     userStore.fetchUsersList(limit.value,currentPage.value)
 }
-const selectValue = ref("")
-const selectData = ref([
-    {
-        id:1,
-        value:"1",
-        label:"Nomi bo'yicha"
-    },
-    {
-        id:2,
-        value:"2",
-        label:"Qo'shilgan vaqti bo'yicha"
-    },
-    {
-        id:3,
-        value:"3",
-        label:"So'ngilari bo'yicha"
-    }
-])
-
-
 
 // for  modal
 
@@ -226,7 +199,6 @@ const formModal = reactive({
     last_name:"",
     phone:"",
     birth_date:"",
-    email:"",
     address:"",
 })
 
@@ -326,6 +298,7 @@ function itemEdit(item) {
 
 onMounted(() => {
     userStore.fetchUsersList(limit.value,currentPage.value)
+    userStore.fetchUsersAll()
 });
 </script>
 

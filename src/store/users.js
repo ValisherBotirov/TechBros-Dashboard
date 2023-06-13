@@ -17,20 +17,39 @@ export const useUsersStore = defineStore('usersStore', {
                 axios
                     .get('/users',{
                         params:{
-                            limit:limit,
-                            page:page
+                            _limit:limit,
+                            _page:page,
                         }
                     })
                     .then((res) => {
                         console.log(res)
                         this.users = res.data
-                        this.pagination = res.data
                         resolve(res)
                     })
                     .catch((error) => {
                         reject(error)
                     }).finally(()=>{
                         this.loading = true
+                })
+            })
+        },
+        fetchUsersAll() {
+            return new Promise((resolve, reject) => {
+                // if (this.users.length > 0) {
+                //     resolve(this.users)
+                //     return
+                // }
+                axios
+                    .get('/users',)
+                    .then((res) => {
+                        console.log(res)
+                        this.pagination = res.data.length
+                        resolve(res)
+                    })
+                    .catch((error) => {
+                        reject(error)
+                    }).finally(()=>{
+                    this.loading = true
                 })
             })
         },
