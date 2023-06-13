@@ -16,9 +16,7 @@ export const useDepartmentStore = defineStore('departmentStore', {
                 // }
                 axios
                     .get('/departments',{
-                        headers:{
-                            Authorization : `Bearer ${localStorage.getItem('token')}`
-                        },
+
                         params:{
                             limit:limit,
                             page:page

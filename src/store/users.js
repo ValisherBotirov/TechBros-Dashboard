@@ -16,18 +16,16 @@ export const useUsersStore = defineStore('usersStore', {
                 // }
                 axios
                     .get('/users',{
-                        headers:{
-                            Authorization : `Bearer ${localStorage.getItem('token')}`
-                        },
                         params:{
                             limit:limit,
                             page:page
                         }
                     })
-                    .then((data) => {
-                        this.users = data.data.data.users
-                        this.pagination = data.data.data.pagination
-                        resolve(data)
+                    .then((res) => {
+                        console.log(res)
+                        this.users = res.data
+                        this.pagination = res.data
+                        resolve(res)
                     })
                     .catch((error) => {
                         reject(error)

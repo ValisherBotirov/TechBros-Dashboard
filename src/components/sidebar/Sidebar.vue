@@ -13,12 +13,14 @@
     "
     class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto border-r border-black transition duration-300 transform bg-white lg:translate-x-0 lg:static lg:inset-0"
   >
-    <div class="flex items-center justify-center mt-8">
-      <div class="flex items-center mx-auto">
-          <router-link to="/">
-          <img src="@/assets/img/logo-uz.png" alt="logo" class="w-full px-4">
+    <div class="flex items-center px-6 mt-8">
+
+              <p class="font-medium text-2xl flex justify-start">
+                  <router-link to="/">
+                      Dashboard
           </router-link>
-      </div>
+              </p>
+
     </div>
 
     <nav class="mt-10">
