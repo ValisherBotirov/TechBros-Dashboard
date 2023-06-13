@@ -86,7 +86,7 @@
               <th
               class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
             >
-                  +{{ item?.phone }}
+                 {{ PhoneNumberFormatter(item.phone)}}
             </th>
               <th
                       class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
@@ -138,12 +138,14 @@ import DeleteModal from "../../components/modal/DeleteModal.vue";
 import VuePagination from "@/components/pagination/VuePagination.vue";
 import Search from "@/components/input/search.vue";
 import ActionModal from "@/components/modal/ActionModal.vue";
+
 import FormInput from "@/components/input/FormInput.vue";
 import { required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import {useUsersStore} from "@/store/users.js";
 import axios from "@/plugins/axios.js";
 import BlockPreloader from "@/components/buttons/BlockPreloader.vue";
+import {PhoneNumberFormatter} from "@/helpers/formatNumber.js";
 
 const userStore = useUsersStore()
 const toast = useToast();
