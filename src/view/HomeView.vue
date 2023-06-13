@@ -67,9 +67,7 @@
                     <th scope="col" class="px-6 py-3">Telefon raqami</th>
                     <th scope="col" class="px-6 py-3">Tug'ilgan kuni</th>
                     <th scope="col" class="px-6 py-3">Yashash manzili</th>
-                    <th scope="col" class="px-6 py-3 text-end">
-                        Amallar
-                    </th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -104,27 +102,6 @@
                     >
                         {{ item?.address }}
                     </th>
-                    <td class="flex items-center px-6 py-4 space-x-4 justify-end">
-                        <div
-                            @click="itemEdit(item)"
-                            class="font-medium text-blue-600  hover:underline cursor-pointer"
-                        >
-                            <i
-                                class="fa-solid fa-pen-to-square text-[blue] text-[20px]"
-                            ></i>
-                        </div>
-                        <div
-                            class="font-medium text-red-600 hover:underline cursor-pointer"
-                            @click="productDelete(item?.id)"
-                        >
-                            <i class="fa-solid fa-trash text-[red] text-[20px]"></i>
-                        </div>
-                        <DeleteModal title="Haqiqatdan ham ushbu foydalanuvchini o'chirmoqchimisiz?"
-                                     :is-open="openDeleteModal"
-                                     @delete="fetchDeleteModal"
-                                     @closeModal="openDeleteModal = $event"
-                        />
-                    </td>
                 </tr>
                 </tbody>
             </table>
