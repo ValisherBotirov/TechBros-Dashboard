@@ -10,10 +10,6 @@ export const useUsersStore = defineStore('usersStore', {
     actions: {
         fetchUsersList(limit,page) {
             return new Promise((resolve, reject) => {
-                // if (this.users.length > 0) {
-                //     resolve(this.users)
-                //     return
-                // }
                 axios
                     .get('/users',{
                         params:{

@@ -59,9 +59,9 @@
                 <tr>
                     <th scope="col" class="p-4">#</th>
                     <th scope="col" class="px-6 py-3">F.I.SH</th>
-                    <th scope="col" class="px-6 py-3">Telefon raqami</th>
-                    <th scope="col" class="px-6 py-3">Tug'ilgan kuni</th>
-                    <th scope="col" class="px-6 py-3">Yashash manzili</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma vaqti</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma nomi</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma narxi</th>
                     <th scope="col" class="px-6 py-3 text-end">
                         Amallar
                     </th>

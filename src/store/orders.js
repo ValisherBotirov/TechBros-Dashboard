@@ -3,26 +3,44 @@ import axios from "@/plugins/axios.js";
 
 export const useDepartmentStore = defineStore('departmentStore', {
     state: () => ({
-        departments: [] ,
+        orders: [] ,
         pagination:null,
         loading:false
     }),
     actions: {
-        fetchDepartmentList(limit,page) {
+        fetchOrderList(limit,page) {
             return new Promise((resolve, reject) => {
-
                 axios
-                    .get('/departments',{
-
+                    .get('/users',{
                         params:{
-                            limit:limit,
-                            page:page
+                            _limit:limit,
+                            _page:page,
                         }
                     })
-                    .then((data) => {
-                        this.departments = data.data.data.departments
-                        this.pagination = data.data.data.pagination
-                        resolve(data)
+                    .then((res) => {
+                        console.log(res)
+                        this.users = res.data
+                        resolve(res)
+                    })
+                    .catch((error) => {
+                        reject(error)
+                    }).finally(()=>{
+                    this.loading = true
+                })
+            })
+        },
+        fetchOrdersAll() {
+            return new Promise((resolve, reject) => {
+                // if (this.users.length > 0) {
+                //     resolve(this.users)
+                //     return
+                // }
+                axios
+                    .get('/users',)
+                    .then((res) => {
+                        console.log(res)
+                        this.pagination = res.data.length
+                        resolve(res)
                     })
                     .catch((error) => {
                         reject(error)
