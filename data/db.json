@@ -60,6 +60,13 @@
       "order": "iPhone 14 PRO",
       "price": 1400,
       "order_date": "2023-06-23"
+    },
+    {
+      "fullName": "Aziz Berdirasulov",
+      "order": "Kompyuter",
+      "price": "5000",
+      "order_date": "2023-06-04",
+      "id": 2
     }
   ]
 }

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from "@/plugins/axios.js";
 
-export const useDepartmentStore = defineStore('departmentStore', {
+export const useOrdersStore = defineStore('departmentStore', {
     state: () => ({
         orders: [] ,
         pagination:null,
@@ -11,7 +11,7 @@ export const useDepartmentStore = defineStore('departmentStore', {
         fetchOrderList(limit,page) {
             return new Promise((resolve, reject) => {
                 axios
-                    .get('/users',{
+                    .get('/orders',{
                         params:{
                             _limit:limit,
                             _page:page,
@@ -19,7 +19,7 @@ export const useDepartmentStore = defineStore('departmentStore', {
                     })
                     .then((res) => {
                         console.log(res)
-                        this.users = res.data
+                        this.orders = res.data
                         resolve(res)
                     })
                     .catch((error) => {
@@ -31,12 +31,9 @@ export const useDepartmentStore = defineStore('departmentStore', {
         },
         fetchOrdersAll() {
             return new Promise((resolve, reject) => {
-                // if (this.users.length > 0) {
-                //     resolve(this.users)
-                //     return
-                // }
+
                 axios
-                    .get('/users',)
+                    .get('/orders',)
                     .then((res) => {
                         console.log(res)
                         this.pagination = res.data.length
