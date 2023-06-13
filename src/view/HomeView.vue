@@ -51,8 +51,64 @@
             </div>
         </div>
 
-        <h3 class="text-gray-700 text-2xl font-medium mt-8 mb-4">So'ngi buyurtmalar</h3>
+<!--        active orders-->
 
+        <h3 class="text-gray-700 text-2xl font-medium mt-8 mb-4">So'ngi buyurtmalar</h3>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <BlockPreloader v-if="!userStore?.loading" width="100%" margin="10px 0" height="40px" :loading="!userStore?.loading" v-for="i in 10" :key="i"></BlockPreloader>
+
+            <table class="w-full text-sm text-left text-gray-500" v-else>
+                <thead
+                    class="text-xs text-gray-700 uppercase bg-gray-50"
+                >
+                <tr>
+                    <th scope="col" class="p-4">#</th>
+                    <th scope="col" class="px-6 py-3">F.I.SH</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma vaqti</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma nomi</th>
+                    <th scope="col" class="px-6 py-3">Buyurtma narxi</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                    class="bg-white border-b  hover:bg-gray-50"
+                    v-for="(item, index) in orderList"
+                    :key="index"
+                >
+                    <td class="w-4 p-4">
+                        <router-link :to="`users/${item?.id}`" class="font-bold cursor-pointer hover:text-[blue]">{{ index + 1 }}.</router-link>
+                    </td>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap cursor-pointer hover:text-[blue]"
+                    >
+                        <router-link :to="`users/${item?.id}`">
+                            {{ item?.fullName }}
+                        </router-link>
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                        {{item?.order_date}}
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+
+                        {{ item?.order }}
+                    </th>
+                    <th
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    >
+                        {{ item?.price }} $
+                    </th>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+<!--        active persona-->
         <h3 class="text-gray-700 text-2xl font-medium mt-8 mb-4">Faol Foydalanuvchilar</h3>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <BlockPreloader v-if="!userStore?.loading" width="100%" margin="10px 0" height="40px" :loading="!userStore?.loading" v-for="i in 10" :key="i"></BlockPreloader>
@@ -120,6 +176,7 @@ import {PhoneNumberFormatter} from "@/helpers/formatNumber.js";
 import BlockPreloader from "@/components/buttons/BlockPreloader.vue";
 import {computed} from "vue";
 import {useUsersStore} from "@/store/users.js";
+import {useOrdersStore} from "@/store/orders.js";
 
 
 
@@ -128,8 +185,10 @@ const toast = useToast();
 
 
 const userStore = useUsersStore()
+const store = useOrdersStore()
 
 const userList = computed(()=> userStore?.users)
+const orderList = computed(()=>store?.orders)
 
 
 
