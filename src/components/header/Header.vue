@@ -45,7 +45,7 @@
           class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl"
         >
 
-          <router-link to="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer">
+          <router-link to="/users/1" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-500 hover:text-white cursor-pointer">
             Profile
           </router-link>
 

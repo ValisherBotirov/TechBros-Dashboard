@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../view/HomeView.vue";
 import Login from "../view/LoginView.vue";
-import Profile from "../view/Profile.vue"
 import Report from "../view/report/Report.vue";
 import ReportEdit from "../view/report/EditReport.vue";
 import Department from "../view/department/Department.vue";
@@ -11,7 +10,7 @@ import UserSingle from "../view/users/UserSingle.vue"
 import Settings from "../view/Settings.vue";
 import Pointer from "../view/pointer/Pointers.vue";
 import PointerSingle from "../view/pointer/PointerSingle.vue";
-import {computed} from "vue";
+
 
 
 const routes = [
@@ -27,12 +26,7 @@ const routes = [
     component: Login,
     meta: { layout: 'login'  }
   },
-  {
-    path: "/profile",
-    name: "profile",
-    component: Profile,
-    meta: { roles: ['admin', 'super'] }
-  },
+
   {
     path: "/report",
     name: "report",
