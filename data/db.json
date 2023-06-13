@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "login": "admin",
+    "parol": "Parol123"
+  },
+  "users": [
+    {
+      "name": "Valisher",
+      "age": 20
+    }
+  ]
+}
