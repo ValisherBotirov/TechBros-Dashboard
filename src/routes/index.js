@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../view/HomeView.vue";
 import Login from "../view/LoginView.vue";
-import Report from "../view/report/Report.vue";
-import ReportEdit from "../view/report/EditReport.vue";
-import Department from "../view/department/Department.vue";
-import DepartmentSingle from "../view/department/DepartmentSingle.vue";
+
 import Users from "../view/users/UsersView.vue";
 import UserSingle from "../view/users/UserSingle.vue"
 import Settings from "../view/Settings.vue";
@@ -25,32 +22,6 @@ const routes = [
     name: "Login",
     component: Login,
     meta: { layout: 'login'  }
-  },
-
-  {
-    path: "/report",
-    name: "report",
-    component: Report,
-    meta: { roles: ['admin', 'super'] }
-  },
-
-  {
-    path: "/report/:id",
-    name: "ReportEdit",
-    component: ReportEdit,
-    meta: { roles: ['admin', 'super'] }
-  },
-  {
-    path: "/department",
-    name: "Department",
-    component: Department,
-    meta: { roles: ['admin', 'super'] }
-  },
-  {
-    path: "/department/:id",
-    name: "DepartmentSingle",
-    component: DepartmentSingle,
-    meta: { roles: ['admin', 'super'] }
   },
   {
     path: "/users",
